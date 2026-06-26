@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: ahc-postgres
+    environment:
+      POSTGRES_USER: ahc
+      POSTGRES_PASSWORD: ahc_password
+      POSTGRES_DB: ahc_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ahc_pgdata:/var/lib/postgresql/data
+
+volumes:
+  ahc_pgdata:
