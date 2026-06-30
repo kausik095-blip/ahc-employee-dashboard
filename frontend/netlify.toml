@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Proxy /api/* server-side to the FastAPI backend on Render.
+# This avoids CORS issues because the request is made from Netlify's
+# infrastructure rather than the browser.
+[[redirects]]
+  from = "/api/*"
+  to = "https://ahc-backend-ufa4.onrender.com/api/:splat"
+  status = 200
+  force = true
+
+# SPA fallback — let React Router handle all client-side routes.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

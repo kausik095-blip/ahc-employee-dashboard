@@ -8,7 +8,9 @@ export const tokenStore = {
   clear: () => localStorage.removeItem(TOKEN_KEY),
 };
 
-const api = axios.create({ baseURL: import.meta.env.VITE_API_BASE_URL || "/" });
+// Always use "/" so both the local Vite dev proxy and the production
+// Netlify proxy redirect handle /api/* without CORS restrictions.
+const api = axios.create({ baseURL: "/" });
 
 api.interceptors.request.use((config) => {
   const token = tokenStore.get();
